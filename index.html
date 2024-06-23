@@ -6,6 +6,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    
   </head>
   <body>
     <div class="container-fluid">
@@ -13,8 +14,27 @@
             <!-- Main -->
             <div class="col main">
                 <h1>Bookshelf App</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>The Bookshelf App you created is a valuable tool for book enthusiasts, allowing users to effortlessly log and organize their reading. It features options to add book details like title, author, and publication year, and categorize books as 'Read' or 'Unread'.</p>
                 <hr>
+                <!-- Search -->
+                <form class="row g-3" id="searchBook">
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="input-group-text">Search Book</div>
+                            <input type="text" class="form-control"id="searchBookTitle" placeholder="Book Title">
+                            <div id="searchBookTitle" class="form-text ml-5">
+                                refresh page to display back to the original page [udah capek pak reviewer]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <button id="searchSubmit" type="submit" class="btn">
+                          <i data-feather="search"></i>
+                        </button>
+                    </div>
+                </form>
+                <hr>
+                <!-- Add Book -->
                 <h3>Add Books</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <!-- form-add -->
@@ -22,32 +42,77 @@
                     <!-- Title -->
                     <div class="mb-3">
                         <label for="inputBookTitle" class="form-label">Title Book : </label>
-                        <input type="text" id="inputBookTitle" class="form-control" placeholder="Koala Kumal...">
+                        <input type="text" id="inputBookTitle" class="form-control" placeholder="enter book title | example : Laskar Pelangi" required>
                     </div>
                     <!-- Author -->
                     <div class="mb-3">
                         <label for="inputBookAuthor" class="form-label">Author  : </label>
-                        <input type="text" id="inputBookAuthor" class="form-control" placeholder="Raditiya dika">
+                        <input type="text" id="inputBookAuthor" class="form-control" placeholder="enter author's name | example :  Andrea Hirata" required>
                     </div>
                     <!-- Year Release -->
                     <div class="mb-3">
                         <label for="inputBookYear" class="form-label">Year Release : </label>
-                        <input type="number" id="inputBookYear" class="form-control" placeholder="2019">
+                        <input type="text" id="inputBookYear" class="form-control" placeholder="enter year published | example : 2005"  pattern="\d{4}" title="Please enter a valid year (e.g., 2023)" required>
+    
                     </div>
                     <!-- Check Already Read -->
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="inputBookIsComplete">
                         <label class="form-check-label" for="inputBookIsComplete">Mark as Read</label>
                       </div>
-                    <button id="bookSubmit" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="bookSubmit" type="submit" class="btn">Submit</button>
                 </form>
             </div>
-            <!-- row -->
+            <!-- unread -->
             <div class="col unread">
-                Column
+                <h1>Unread Books</h1>
+                <p>A list of books you haven't read, where you plan your next books to enjoy.</p>
+                <hr>
+                <!-- card -->
+                <div id="incompleteBookshelfList" class="book_list">
+                    <!-- Example - Real Element Generate by DOM -->
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn green">Mark as Read</button>
+                                <butto class="btn edit">
+                                    <i data-feather="edit-2"></i>
+                                </button>
+                                <button class="red btn"><i data-feather="trash"></i></button>
+                                <button class="btn red">
+                                    <i data-feather="trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
             </div>
+            <!-- Read -->
             <div class="col read">
-                Column
+                <h1>Read Books</h1>
+                <p>A list of books you've completed, where you remember and record the books you've enjoyed.</p>
+                <hr>
+                <!-- card -->
+                <div id="completeBookshelfList" class="book_list">
+                    <!-- Example - Real Element Generate by DOM -->
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn green">Mark as Read</button>
+                                <button id="searchSubmit" class="btn edit">
+                                    <i data-feather="edit-2"></i>
+                                </button>
+                                <button id="searchSubmit" class="btn red">
+                                    <i data-feather="trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
             </div>
         </div>
     </div>  
@@ -59,10 +124,12 @@
 
 
 
-
-
+    <script src="script.js"></script>   
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>feather.replace();</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    
+
   </body>
 </html>
