@@ -83,14 +83,18 @@
     color: #FFFFFF;
 }
 
-.card .red:hover{
+.card .delete,.card .edit{
+    width: 21%;
+}
+
+.card .delete:hover{
     background-color: #f57c7c;
     color: #000000;
     border: 2px solid #000;
 }
 
-.card .green{
-    width: 64%;
+.card .mark{
+    width: 55%;
     background-color: #000;
     color: #fff;
     border: none;
@@ -107,4 +111,22 @@
 .read{
     background-color: #F1F1F1;
     padding: 22px;
+}
+
+/* Modal */
+.modal .cancle-m{
+    background-color: #FFFFFF;
+    color: #000;
+    border: 2px solid #000;
+    font-weight: 600;
+}
+
+.modal .submit-m{
+    background-color: #000;
+    color: #fff;
+}
+
+.modal .submit-m:hover{
+    background-color: #272727;
+    color: #FFFFFF;
 }

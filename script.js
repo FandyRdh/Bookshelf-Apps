@@ -9,6 +9,7 @@ const year = document.querySelector('#inputBookYear');
 const isComplete = document.querySelector('#inputBookIsComplete');
 const completeBookshelfList = document.querySelector('#completeBookshelfList');
 const incompleteBookshelfList = document.querySelector('#incompleteBookshelfList');
+const editBook = document.getElementById('editBook');
 
 // Check
 function isStorageExist() {
@@ -125,7 +126,7 @@ function makeBook(bookObject) {
 
     if (bookObject.isComplete) {
         const unreadButton = document.createElement('button');
-        unreadButton.classList.add('green','btn');
+        unreadButton.classList.add('mark','btn');
         unreadButton.innerText = 'Mark as Unread';
 
         unreadButton.addEventListener('click', function () { 
@@ -137,13 +138,23 @@ function makeBook(bookObject) {
         editButton.innerText = 'Edit';
 
         const removeButton = document.createElement('button');
-        removeButton.classList.add('red','btn');
+        removeButton.classList.add('delete','btn');
         removeButton.innerText = 'Remove';
+
+        editButton.addEventListener('click', function() {
+            var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            myModal.show();
+            document.getElementById('editid').value = bookObject.id;
+            document.getElementById('editBookTitle').value = bookObject.title;
+            document.getElementById('editBookAuthor').value = bookObject.author;
+            document.getElementById('editBookYear').value = bookObject.year;
+        });
 
         removeButton.addEventListener('click', function () {
             let confirmRemove = confirm('Are you sure you want to delete a book ('+bookObject.title+') ?');
-            if (confirmRemove)
+            if (confirmRemove){
                 removeBook(bookObject.id,bookObject.title);
+            }
         });
 
         const buttonContainer = document.createElement('div');
@@ -153,7 +164,7 @@ function makeBook(bookObject) {
         container.append(buttonContainer);
     } else {
         const readButton = document.createElement('button');
-        readButton.classList.add('green','btn');
+        readButton.classList.add('mark','btn');
         readButton.innerText = 'Mark as Read';
 
         readButton.addEventListener('click', function () {
@@ -165,14 +176,24 @@ function makeBook(bookObject) {
         editButton.innerText = 'Edit';
 
         const removeButton = document.createElement('button');
-        removeButton.classList.add('red','btn');
+        removeButton.classList.add('delete','btn');
         removeButton.innerText = 'Remove';
+
+        editButton.addEventListener('click', function() {
+            var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            myModal.show();
+            document.getElementById('editid').value = bookObject.id;
+            document.getElementById('editBookTitle').value = bookObject.title;
+            document.getElementById('editBookAuthor').value = bookObject.author;
+            document.getElementById('editBookYear').value = bookObject.year;
+        });
 
         removeButton.addEventListener('click', function () {
             let confirmRemove = confirm('Are you sure you want to delete a book ('+bookObject.title+') ?');
 
-            if (confirmRemove)
+            if (confirmRemove){
                 removeBook(bookObject.id,bookObject.title);
+            }
         });
 
         const buttonContainer = document.createElement('div');
@@ -228,4 +249,27 @@ function removeBook(bookId,bookTitle) {
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
     alert('('+bookTitle+') book successfully deleted');
+}
+
+// Edit
+editBook.addEventListener('submit', function (event) {
+    saveEditBook();
+});
+
+function saveEditBook() {
+    const modalEdit = document.getElementById('exampleModal');
+
+    const editid = document.getElementById('editid').value;
+    const editBookTitle = document.getElementById('editBookTitle').value;
+    const editBookAuthor = document.getElementById('editBookAuthor').value;
+    const editBookYear = document.getElementById('editBookYear').value;
+    
+    const bookIdPosition = findBookIndex(parseInt(editid));
+
+    books[bookIdPosition].title = editBookTitle;
+    books[bookIdPosition].author = editBookAuthor;
+    books[bookIdPosition].year = editBookYear;
+
+    alert("Book ("+editBookTitle+") edited successfully");
+    saveData();
 }

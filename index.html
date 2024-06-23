@@ -3,10 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Bookshelf App - Dicoding x FandyRDH</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     
+    <link rel="icon" href="/assets/img/fandy-icon.png" type="image/x-icon">
+    <link rel="icon" href="/assets/img/fandy-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/img/fandy-icon.png">
+
   </head>
   <body>
     <div class="container-fluid">
@@ -23,7 +27,7 @@
                             <div class="input-group-text">Search Book</div>
                             <input type="text" class="form-control"id="searchBookTitle" placeholder="Book Title">
                             <div id="searchBookTitle" class="form-text ml-5">
-                                refresh page to display back to the original page [udah capek pak reviewer]
+                                refresh the page to display the original page.
                             </div>
                         </div>
                     </div>
@@ -76,12 +80,12 @@
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <div class="d-flex justify-content-between">
-                                <button class="btn green">Mark as Read</button>
+                                <button class="btn mark">Mark as Read</button>
                                 <butto class="btn edit">
                                     <i data-feather="edit-2"></i>
                                 </button>
-                                <button class="red btn"><i data-feather="trash"></i></button>
-                                <button class="btn red">
+                                <button class="delete btn"><i data-feather="trash"></i></button>
+                                <button class="btn delete">
                                     <i data-feather="trash"></i>
                                 </button>
                             </div>
@@ -102,11 +106,11 @@
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <div class="d-flex justify-content-between">
-                                <button class="btn green">Mark as Read</button>
+                                <button class="btn mark">Mark as Read</button>
                                 <button id="searchSubmit" class="btn edit">
                                     <i data-feather="edit-2"></i>
                                 </button>
-                                <button id="searchSubmit" class="btn red">
+                                <button id="searchSubmit" class="btn delete">
                                     <i data-feather="trash"></i>
                                 </button>
                             </div>
@@ -118,8 +122,43 @@
     </div>  
 
 
+    <!-- Modal -->
 
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Book</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <form id="editBook">
+                <div class="modal-body">
+                    <!-- id -->
+                    <input type="text" id="editid" class="form-control" placeholder="enter book title | example : Laskar Pelangi" disabled hidden>
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="inputBookTitle" class="form-label">Title Book : </label>
+                        <input type="text" id="editBookTitle" class="form-control" placeholder="enter book title | example : Laskar Pelangi" required>
+                    </div>
+                    <!-- Author -->
+                    <div class="mb-3">
+                        <label for="inputBookAuthor" class="form-label">Author  : </label>
+                        <input type="text" id="editBookAuthor" class="form-control" placeholder="enter author's name | example :  Andrea Hirata" required>
+                    </div>
+                    <!-- Year Release -->
+                    <div class="mb-3">
+                        <label for="inputBookYear" class="form-label">Year Release : </label>
+                        <input type="text" id="editBookYear" class="form-control" placeholder="enter year published | example : 2005"  pattern="\d{4}" title="Please enter a valid year (e.g., 2023)" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn cancle-m" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn submit-m">Send message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
 
 
 
