@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // save book
 function addBook() {
-    const bookObject = generateBookObject(+new Date(), title.value, author.value, year.value, isComplete.checked);
+    const bookObject = generateBookObject(+new Date(), title.value, author.value, parseInt(year.value), isComplete.checked);
     books.push(bookObject);
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
@@ -147,7 +147,7 @@ function makeBook(bookObject) {
             document.getElementById('editid').value = bookObject.id;
             document.getElementById('editBookTitle').value = bookObject.title;
             document.getElementById('editBookAuthor').value = bookObject.author;
-            document.getElementById('editBookYear').value = bookObject.year;
+            document.getElementById('editBookYear').value = parseInt(bookObject.year);
         });
 
         removeButton.addEventListener('click', function () {
@@ -262,14 +262,14 @@ function saveEditBook() {
     const editid = document.getElementById('editid').value;
     const editBookTitle = document.getElementById('editBookTitle').value;
     const editBookAuthor = document.getElementById('editBookAuthor').value;
-    const editBookYear = document.getElementById('editBookYear').value;
+    const editBookYear = parseInt(document.getElementById('editBookYear').value);
     
     const bookIdPosition = findBookIndex(parseInt(editid));
 
     books[bookIdPosition].title = editBookTitle;
     books[bookIdPosition].author = editBookAuthor;
     books[bookIdPosition].year = editBookYear;
-
+    
     alert("Book ("+editBookTitle+") edited successfully");
     saveData();
 }
